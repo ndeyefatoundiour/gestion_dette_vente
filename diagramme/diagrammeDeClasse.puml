@@ -1,0 +1,71 @@
+@startuml diagrammeDeClasse
+
+class Client {
+    id
+    prenom
+    nom
+    telephone
+    mail
+}
+
+class Vente {
+    id
+    montantTotal
+    montantVerse
+    date
+}
+
+class ReglementMode {
+    id
+    nom
+}
+
+class LigneVente {
+    id
+    quantiteVente
+    prixVente
+}
+
+class Produit {
+    id
+    libelle
+    prixUnitaire
+    qteStock
+}
+
+class Dette {
+    id
+    date
+    montantInitial
+    montantRestant
+}
+
+class Paiement {
+    id
+    date
+    montant
+}
+
+class PaiementMode {
+    id
+    nomMode
+}
+
+
+Client "1" -- "0..*" Vente
+
+Vente "1" -- "0..*" LigneVente
+
+Produit "1" -- "0..*" LigneVente
+
+Vente "1" -- "0..1" Dette
+
+Client "1" -- "0..*" Dette
+
+Dette "1" -- "0..*" Paiement
+
+Paiement "0..*" -- "1" PaiementMode
+
+ReglementMode "1" -- "0..*" Vente
+
+@enduml

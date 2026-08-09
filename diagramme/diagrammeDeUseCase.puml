@@ -1,0 +1,55 @@
+@startuml usecase
+left to right direction
+actor "utilisateur" as u
+
+rectangle "gestion produit"{
+
+    usecase "lister vente" as LC
+    usecase "enregistrer vente" as EV
+    usecase "select clients" as SC
+    usecase "select article" as SA
+    usecase "select mode payement" as SMP
+    usecase "ajouter article" as AA
+    usecase "afficher statistique" as ASV
+    usecase "liter registre  vente" as LRV
+    usecase "lister produits" as LP
+
+    usecase "lister dette" as LD
+    usecase "afficher statistique" as ASD
+    usecase "liter registre  dette" as LRD
+    usecase "liter article" as LA
+    usecase "afficher paiment" as FP
+    usecase "enregistre remboursement" as ER
+    usecase "afficher dette" as LR
+    usecase "selection paiment" as SP
+    usecase "raccoursi paiment" as RP
+
+}
+
+u->LC
+
+
+LC ..> EV: <<include>>
+LC ..> ASV: <<include>>
+LC ..> LRV: <<include>>
+EV ..> SC: <<include>>
+EV ..> SA: <<include>>
+EV ..> SMP: <<include>>
+EV ..> AA: <<include>>
+LRV <.. LP: <<extend>>
+
+
+u->LD
+
+LD ..> ASD: <<include>>
+LD ..> LRD: <<include>>
+LRD <.. LA: <<extend>>
+LRD <.. FP: <<extend>>
+LRD <.. LR: <<extend>>
+LR <.. ER: <<extend>>
+ER ..> SP: <<include>>
+ER <.. RP: <<extend>>
+
+
+
+@enduml
