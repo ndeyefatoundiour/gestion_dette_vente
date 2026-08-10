@@ -1,11 +1,4 @@
-DROP TABLE paiement ;
-DROP TABLE dette ;
-DROP TABLE ligne_vente ;
-DROP TABLE vente ;
-DROP TABLE produit ;
-DROP TABLE paiement_mode ;
-DROP TABLE reglement_mode ;
-DROP TABLE client ;
+
 
 CREATE TABLE client (
     id SERIAL PRIMARY KEY,
