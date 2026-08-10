@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="text-[16px] font-bold" id="totalCreances">
-                    99 000 F
+                     <?php echo $titalDue['créances_actives']?>  F
                 </div>
             </div>
 
@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="text-[16px] font-bold" id="clientsDebiteurs">
-                    3 clients
+                    <?php echo $nombreDette['clients_débiteurs']?> 
                 </div>
             </div>
 
@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="text-[16px] font-bold" id="totalRecouvrements">
-                    34 000 F
+                    <?php echo $totalRecouvrement['total_recouvrements']?>  F
                 </div>
             </div>
 
@@ -236,7 +236,7 @@
                     <!-- =========================================================
                          DETTE 1 — Maimouna Diallo
                     ========================================================== -->
-
+                    <?php $dettes=$dettes??[] ;foreach ($dettes as $key => $dettes) :?>
                     <tr
                         class="dette transition-all duration-200 hover:bg-rowhover"
                         data-client="Maimouna Diallo"
@@ -246,33 +246,33 @@
                     >
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            <span class="font-bold text-[#aab4c5]">#DT-3</span>
+                            <span class="font-bold text-[#aab4c5]"><?php echo $dettes['id_dette']?></span>
                             <span class="block text-[#6f7b8f] text-[8px] mt-[3px]">#CMD-4</span>
                         </td>
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            07 Aug 2026 23:48
+                            <?php echo $dettes['date']?>
                         </td>
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            <span class="font-bold text-[#f3f5f8] client-name">Maimouna Diallo</span>
-                            <span class="block text-[#7d889b] text-[8px] mt-[3px]">Tél: 701122334</span>
+                            <span class="font-bold text-[#f3f5f8] client-name"><?php echo $dettes['nomComplet']?></span>
+                            <span class="block text-[#7d889b] text-[8px] mt-[3px]">Tél: <?php echo $dettes['telephone']?></span>
                         </td>
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle font-bold">
-                            15 000 F
+                            <?php echo $dettes['montant_initial']?> F 
                         </td>
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle text-[#1dd4a7] font-bold montant-paye">
-                            0 F
+                            <?php echo $dettes['montant_verse']?>  F
                         </td>
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle text-[#ff666c] font-bold montant-reste">
-                            15 000 F
+                            <?php echo $dettes['montant_restant']?> F 
                         </td>
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle statut font-bold text-[#dce1e8]">
-                            NON SOLDÉE
+                            <?php echo $dettes['statut']?>
                         </td>
 
                         <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
@@ -309,7 +309,7 @@
 
                     <!-- PANNEAU PAIEMENTS — DETTE 1 (statique, masqué par défaut) -->
 
-                    <tr class="hidden" id="paiements-1">
+                    <tr class="hidden" id="paiements-<?php echo $key?>">
                         <td colspan="8" class="p-0 border-b border-detailsborder">
 
                             <div class="bg-paymentsbox mb-2.5 p-[15px] rounded-[14px]">
@@ -346,7 +346,7 @@
 
                     <!-- PANNEAU REMBOURSEMENT — DETTE 1 (statique, masqué par défaut) -->
 
-                    <tr class="hidden" id="remb-1">
+                    <tr class="hidden" id="remb-<?php echo $key?>">
                         <td colspan="8" class="p-0 border-b border-detailsborder">
 
                             <div class="remboursement-box w-[675px] max-w-full bg-rembbox border border-rembborder rounded-xl p-[15px] mb-[15px] shadow-[0_15px_30px_rgba(0,0,0,0.25)]">
@@ -358,7 +358,7 @@
                                         <span class="text-[#15d6c1]">Maimouna Diallo</span>
                                     </div>
 
-                                    <div id="reste-badge-1" class="bg-restebadgebg border border-restebadgeborder text-[#ff626d] text-[8px] font-bold py-[6px] px-[10px] rounded-[15px]">
+                                    <div id="reste-badge-<?php echo $key?>" class="bg-restebadgebg border border-restebadgeborder text-[#ff626d] text-[8px] font-bold py-[6px] px-[10px] rounded-[15px]">
                                         Reste dû : 15 000 F
                                     </div>
 
@@ -374,9 +374,9 @@
                                     <div class="flex gap-[5px]">
 
                                         <button
-                                            id="quick-total-1"
+                                            id="quick-total-<?php echo $key?>"
                                             class="quick-btn border-none cursor-pointer bg-quickbtnbg text-[#f0f3f6] border border-quickbtnborder rounded-md py-[5px] px-[9px] text-[8px] font-bold hover:border-[#1bcbbd]"
-                                            onclick="remboursementTotal(1)"
+                                            onclick="remboursementTotal(<?php echo $key?>)"
                                         >
                                             Tout solder (15 000 F)
                                         </button>
@@ -384,7 +384,7 @@
                                         <button
                                             id="quick-moitie-1"
                                             class="quick-btn border-none cursor-pointer bg-quickbtnbg text-[#f0f3f6] border border-quickbtnborder rounded-md py-[5px] px-[9px] text-[8px] font-bold hover:border-[#1bcbbd]"
-                                            onclick="remboursementMoitie(1)"
+                                            onclick="remboursementMoitie(<?php echo $key?>)"
                                         >
                                             50% (7 500 F)
                                         </button>
@@ -402,7 +402,7 @@
                                         </label>
                                         <input
                                             type="number"
-                                            id="montant-remb-1"
+                                            id="montant-remb-<?php echo $key?>"
                                             class="w-full h-[34px] bg-inputbg border border-inputborder rounded-lg text-white px-[10px] outline-none text-[10px] focus:border-[#17cbbd]"
                                             value="15000"
                                             min="1"
@@ -424,7 +424,7 @@
 
                                     <button
                                         class="h-[34px] self-end border-none rounded-lg bg-[#17c997] hover:bg-[#14b789] text-white px-[17px] text-[9px] font-bold cursor-pointer w-full sm:w-auto"
-                                        onclick="enregistrerRemboursement(1)"
+                                        onclick="enregistrerRemboursement(<?php echo $key?>)"
                                     >
                                         ✓ ENREGISTRER LE REMBOURSEMENT
                                     </button>
@@ -435,415 +435,7 @@
 
                         </td>
                     </tr>
-
-
-                    <!-- =========================================================
-                         DETTE 2 — Moussa Sarr
-                    ========================================================== -->
-
-                    <tr
-                        class="dette transition-all duration-200 hover:bg-rowhover"
-                        data-client="Moussa Sarr"
-                        data-dette="2"
-                        data-montant="74000"
-                        data-paye="24000"
-                    >
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            <span class="font-bold text-[#aab4c5]">#DT-2</span>
-                            <span class="block text-[#6f7b8f] text-[8px] mt-[3px]">#CMD-3</span>
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            07 Aug 2026 22:48
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            <span class="font-bold text-[#f3f5f8] client-name">Moussa Sarr</span>
-                            <span class="block text-[#7d889b] text-[8px] mt-[3px]">Tél: 769876543</span>
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle font-bold">
-                            74 000 F
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle text-[#1dd4a7] font-bold montant-paye">
-                            24 000 F
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle text-[#ff666c] font-bold montant-reste">
-                            50 000 F
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle statut font-bold text-[#dce1e8]">
-                            NON SOLDÉE
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-
-                            <div class="flex gap-[5px]">
-
-                                <button
-                                    class="border-none cursor-pointer py-[7px] px-[10px] rounded-[7px] text-[9px] font-bold transition-all duration-200 hover:-translate-y-[1px] bg-btnarticlesbg text-white border border-btnarticlesborder"
-                                    onclick="afficherArticles(this)"
-                                >
-                                    Articles
-                                </button>
-
-                                <button
-                                    class="border-none cursor-pointer py-[7px] px-[10px] rounded-[7px] text-[9px] font-bold transition-all duration-200 hover:-translate-y-[1px] bg-btnpaiementsbg text-[#17d5c3] border border-btnpaiementsborder"
-                                    onclick="afficherPaiements(this)"
-                                >
-                                    💳 Paiements
-                                </button>
-
-                                <button
-                                    class="border-none cursor-pointer py-[7px] px-[10px] rounded-[7px] text-[9px] font-bold transition-all duration-200 hover:-translate-y-[1px] bg-btnrembbg text-[#f5c400] border border-btnrembborder hover:bg-btnrembhover"
-                                    onclick="afficherRemboursement(this)"
-                                >
-                                    Rembourser
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- PANNEAU PAIEMENTS — DETTE 2 (statique, masqué par défaut) -->
-
-                    <tr class="hidden" id="paiements-2">
-                        <td colspan="8" class="p-0 border-b border-detailsborder">
-
-                            <div class="bg-paymentsbox mb-2.5 p-[15px] rounded-[14px]">
-
-                                <div class="text-[#13d4c2] text-[10px] font-bold mb-3">
-                                    Paiements enregistrés :
-                                </div>
-
-                                <table class="payment-table w-full border-collapse">
-
-                                    <thead>
-                                        <tr>
-                                            <th class="text-left text-[#8994a7] text-[8px] uppercase py-2 border-b border-thborder">DATE</th>
-                                            <th class="text-left text-[#8994a7] text-[8px] uppercase py-2 border-b border-thborder">VERSEMENT</th>
-                                            <th class="text-left text-[#8994a7] text-[8px] uppercase py-2 border-b border-thborder">MODE</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td class="py-2 text-[9px] border-b border-tdborder">2026-08-07 22:48:53</td>
-                                            <td class="py-2 text-[9px] border-b border-tdborder text-[#1dd4a7] font-bold">24 000 F</td>
-                                            <td class="py-2 text-[9px] border-b border-tdborder">Wave</td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- PANNEAU REMBOURSEMENT — DETTE 2 (statique, masqué par défaut) -->
-
-                    <tr class="hidden" id="remb-2">
-                        <td colspan="8" class="p-0 border-b border-detailsborder">
-
-                            <div class="remboursement-box w-[675px] max-w-full bg-rembbox border border-rembborder rounded-xl p-[15px] mb-[15px] shadow-[0_15px_30px_rgba(0,0,0,0.25)]">
-
-                                <div class="flex justify-between items-center pb-2.5 border-b border-dashed border-rembheaderborder">
-
-                                    <div class="text-[11px] font-bold">
-                                        💳 Nouveau Remboursement —
-                                        <span class="text-[#15d6c1]">Moussa Sarr</span>
-                                    </div>
-
-                                    <div id="reste-badge-2" class="bg-restebadgebg border border-restebadgeborder text-[#ff626d] text-[8px] font-bold py-[6px] px-[10px] rounded-[15px]">
-                                        Reste dû : 50 000 F
-                                    </div>
-
-                                </div>
-
-
-                                <div class="mt-3">
-
-                                    <div class="text-[#8290a5] text-[8px] font-bold mb-[7px]">
-                                        RACCOURCIS :
-                                    </div>
-
-                                    <div class="flex gap-[5px]">
-
-                                        <button
-                                            id="quick-total-2"
-                                            class="quick-btn border-none cursor-pointer bg-quickbtnbg text-[#f0f3f6] border border-quickbtnborder rounded-md py-[5px] px-[9px] text-[8px] font-bold hover:border-[#1bcbbd]"
-                                            onclick="remboursementTotal(2)"
-                                        >
-                                            Tout solder (50 000 F)
-                                        </button>
-
-                                        <button
-                                            id="quick-moitie-2"
-                                            class="quick-btn border-none cursor-pointer bg-quickbtnbg text-[#f0f3f6] border border-quickbtnborder rounded-md py-[5px] px-[9px] text-[8px] font-bold hover:border-[#1bcbbd]"
-                                            onclick="remboursementMoitie(2)"
-                                        >
-                                            50% (25 000 F)
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-3 mt-3">
-
-                                    <div class="form-group">
-                                        <label class="block text-[#8995a8] text-[8px] font-bold uppercase mb-1.5">
-                                            Montant du versement (FCFA)
-                                        </label>
-                                        <input
-                                            type="number"
-                                            id="montant-remb-2"
-                                            class="w-full h-[34px] bg-inputbg border border-inputborder rounded-lg text-white px-[10px] outline-none text-[10px] focus:border-[#17cbbd]"
-                                            value="50000"
-                                            min="1"
-                                            max="50000"
-                                        >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="block text-[#8995a8] text-[8px] font-bold uppercase mb-1.5">
-                                            Canal de paiement
-                                        </label>
-                                        <select class="w-full h-[34px] bg-inputbg border border-inputborder rounded-lg text-white px-[10px] outline-none text-[10px] focus:border-[#17cbbd]">
-                                            <option>🟠 Orange Money</option>
-                                            <option>🔵 Wave</option>
-                                            <option>🟢 Free Money</option>
-                                            <option>💵 Espèces</option>
-                                        </select>
-                                    </div>
-
-                                    <button
-                                        class="h-[34px] self-end border-none rounded-lg bg-[#17c997] hover:bg-[#14b789] text-white px-[17px] text-[9px] font-bold cursor-pointer w-full sm:w-auto"
-                                        onclick="enregistrerRemboursement(2)"
-                                    >
-                                        ✓ ENREGISTRER LE REMBOURSEMENT
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- =========================================================
-                         DETTE 3 — Fama Diouf
-                    ========================================================== -->
-
-                    <tr
-                        class="dette transition-all duration-200 hover:bg-rowhover"
-                        data-client="Fama Diouf"
-                        data-dette="3"
-                        data-montant="44000"
-                        data-paye="10000"
-                    >
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            <span class="font-bold text-[#aab4c5]">#DT-1</span>
-                            <span class="block text-[#6f7b8f] text-[8px] mt-[3px]">#CMD-2</span>
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            07 Aug 2026 21:48
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-                            <span class="font-bold text-[#f3f5f8] client-name">Fama Diouf</span>
-                            <span class="block text-[#7d889b] text-[8px] mt-[3px]">Tél: 781234567</span>
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle font-bold">
-                            44 000 F
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle text-[#1dd4a7] font-bold montant-paye">
-                            10 000 F
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle text-[#ff666c] font-bold montant-reste">
-                            34 000 F
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle statut font-bold text-[#dce1e8]">
-                            NON SOLDÉE
-                        </td>
-
-                        <td class="py-[11px] text-[10px] border-b border-tdborder align-middle">
-
-                            <div class="flex gap-[5px]">
-
-                                <button
-                                    class="border-none cursor-pointer py-[7px] px-[10px] rounded-[7px] text-[9px] font-bold transition-all duration-200 hover:-translate-y-[1px] bg-btnarticlesbg text-white border border-btnarticlesborder"
-                                    onclick="afficherArticles(this)"
-                                >
-                                    Articles
-                                </button>
-
-                                <button
-                                    class="border-none cursor-pointer py-[7px] px-[10px] rounded-[7px] text-[9px] font-bold transition-all duration-200 hover:-translate-y-[1px] bg-btnpaiementsbg text-[#17d5c3] border border-btnpaiementsborder"
-                                    onclick="afficherPaiements(this)"
-                                >
-                                    💳 Paiements
-                                </button>
-
-                                <button
-                                    class="border-none cursor-pointer py-[7px] px-[10px] rounded-[7px] text-[9px] font-bold transition-all duration-200 hover:-translate-y-[1px] bg-btnrembbg text-[#f5c400] border border-btnrembborder hover:bg-btnrembhover"
-                                    onclick="afficherRemboursement(this)"
-                                >
-                                    Rembourser
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- PANNEAU PAIEMENTS — DETTE 3 (statique, masqué par défaut) -->
-
-                    <tr class="hidden" id="paiements-3">
-                        <td colspan="8" class="p-0 border-b border-detailsborder">
-
-                            <div class="bg-paymentsbox mb-2.5 p-[15px] rounded-[14px]">
-
-                                <div class="text-[#13d4c2] text-[10px] font-bold mb-3">
-                                    Paiements enregistrés :
-                                </div>
-
-                                <table class="payment-table w-full border-collapse">
-
-                                    <thead>
-                                        <tr>
-                                            <th class="text-left text-[#8994a7] text-[8px] uppercase py-2 border-b border-thborder">DATE</th>
-                                            <th class="text-left text-[#8994a7] text-[8px] uppercase py-2 border-b border-thborder">VERSEMENT</th>
-                                            <th class="text-left text-[#8994a7] text-[8px] uppercase py-2 border-b border-thborder">MODE</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td class="py-2 text-[9px] border-b border-tdborder">2026-08-07 21:48:12</td>
-                                            <td class="py-2 text-[9px] border-b border-tdborder text-[#1dd4a7] font-bold">10 000 F</td>
-                                            <td class="py-2 text-[9px] border-b border-tdborder">Orange Money</td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- PANNEAU REMBOURSEMENT — DETTE 3 (statique, masqué par défaut) -->
-
-                    <tr class="hidden" id="remb-3">
-                        <td colspan="8" class="p-0 border-b border-detailsborder">
-
-                            <div class="remboursement-box w-[675px] max-w-full bg-rembbox border border-rembborder rounded-xl p-[15px] mb-[15px] shadow-[0_15px_30px_rgba(0,0,0,0.25)]">
-
-                                <div class="flex justify-between items-center pb-2.5 border-b border-dashed border-rembheaderborder">
-
-                                    <div class="text-[11px] font-bold">
-                                        💳 Nouveau Remboursement —
-                                        <span class="text-[#15d6c1]">Fama Diouf</span>
-                                    </div>
-
-                                    <div id="reste-badge-3" class="bg-restebadgebg border border-restebadgeborder text-[#ff626d] text-[8px] font-bold py-[6px] px-[10px] rounded-[15px]">
-                                        Reste dû : 34 000 F
-                                    </div>
-
-                                </div>
-
-
-                                <div class="mt-3">
-
-                                    <div class="text-[#8290a5] text-[8px] font-bold mb-[7px]">
-                                        RACCOURCIS :
-                                    </div>
-
-                                    <div class="flex gap-[5px]">
-
-                                        <button
-                                            id="quick-total-3"
-                                            class="quick-btn border-none cursor-pointer bg-quickbtnbg text-[#f0f3f6] border border-quickbtnborder rounded-md py-[5px] px-[9px] text-[8px] font-bold hover:border-[#1bcbbd]"
-                                            onclick="remboursementTotal(3)"
-                                        >
-                                            Tout solder (34 000 F)
-                                        </button>
-
-                                        <button
-                                            id="quick-moitie-3"
-                                            class="quick-btn border-none cursor-pointer bg-quickbtnbg text-[#f0f3f6] border border-quickbtnborder rounded-md py-[5px] px-[9px] text-[8px] font-bold hover:border-[#1bcbbd]"
-                                            onclick="remboursementMoitie(3)"
-                                        >
-                                            50% (17 000 F)
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-3 mt-3">
-
-                                    <div class="form-group">
-                                        <label class="block text-[#8995a8] text-[8px] font-bold uppercase mb-1.5">
-                                            Montant du versement (FCFA)
-                                        </label>
-                                        <input
-                                            type="number"
-                                            id="montant-remb-3"
-                                            class="w-full h-[34px] bg-inputbg border border-inputborder rounded-lg text-white px-[10px] outline-none text-[10px] focus:border-[#17cbbd]"
-                                            value="34000"
-                                            min="1"
-                                            max="34000"
-                                        >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="block text-[#8995a8] text-[8px] font-bold uppercase mb-1.5">
-                                            Canal de paiement
-                                        </label>
-                                        <select class="w-full h-[34px] bg-inputbg border border-inputborder rounded-lg text-white px-[10px] outline-none text-[10px] focus:border-[#17cbbd]">
-                                            <option>🟠 Orange Money</option>
-                                            <option>🔵 Wave</option>
-                                            <option>🟢 Free Money</option>
-                                            <option>💵 Espèces</option>
-                                        </select>
-                                    </div>
-
-                                    <button
-                                        class="h-[34px] self-end border-none rounded-lg bg-[#17c997] hover:bg-[#14b789] text-white px-[17px] text-[9px] font-bold cursor-pointer w-full sm:w-auto"
-                                        onclick="enregistrerRemboursement(3)"
-                                    >
-                                        ✓ ENREGISTRER LE REMBOURSEMENT
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </td>
-                    </tr>
-
+                    <?php endforeach ?>
                 </tbody>
 
             </table>

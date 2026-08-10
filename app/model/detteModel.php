@@ -29,11 +29,11 @@ function nombreDette() {
 
     $pdo=connexionDB();
 
-     $sql="SELECT COUNT(client_id) AS clients-débiteurs
+     $sql="SELECT COUNT(client_id) AS clients_débiteurs
             FROM dette
             WHERE montant_restant>0 ;
     ";
-    $result=query( $pdo, $sql, false);
+    $result=query( $pdo, $sql, true);
 
     $pdo = null;
 
@@ -49,7 +49,7 @@ function totalDUE() {
      $sql="SELECT SUM(montant_restant) AS créances_actives 
         FROM dette; 
     ";
-    $result=query( $pdo, $sql, false);
+    $result=query( $pdo, $sql, true);
 
     $pdo = null;
 
@@ -62,10 +62,10 @@ function totalRecue() {
 
     $pdo=connexionDB();
 
-     $sql="SELECT SUM (montant_initial - montant_restant) AS  total-recouvrements
+     $sql="SELECT SUM (montant_initial - montant_restant) AS  total_recouvrements
         FROM dette; 
     ";
-    $result=query( $pdo, $sql, false);
+    $result=query( $pdo, $sql, true);
 
     $pdo = null;
 

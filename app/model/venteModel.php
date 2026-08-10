@@ -57,7 +57,7 @@ function nombreVente() {
      $sql="SELECT COUNT(id) AS nombr_vente
     FROM vente ;
     ";
-    $result=query( $pdo, $sql, false);
+    $result=query( $pdo, $sql, true);
 
     $pdo = null;
 
@@ -73,7 +73,7 @@ function totalDUE() {
      $sql="SELECT SUM(montant_restant) AS créances_actives 
         FROM dette; 
     ";
-    $result=query( $pdo, $sql, false);
+    $result=query( $pdo, $sql, true);
 
     $pdo = null;
   
@@ -89,7 +89,7 @@ function totalRecue() {
      $sql="SELECT SUM(montant_verse) AS total_recue
         FROM vente  ;
     ";
-    $result=query( $pdo, $sql, false);
+    $result=query( $pdo, $sql, true);
 
     $pdo = null;
 
